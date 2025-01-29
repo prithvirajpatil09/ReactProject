@@ -7,6 +7,7 @@ import Domestic from './Domestic';
 import NavBarComponet from './Component/NavBar';
 import PopularPackage from './Component/PopularPackage';
 import Footer from './Component/Footer';
+import ReviewCard from './Component/ReviewCard';
 function App() {
   return (
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/domestic" element={<Domestic />} />
         <Route path="/popularPackage" element={<PopularPackage />} />
         <Route path="/LoginForm" element={<LoginForm />} />
+        
 
       </Routes>
       <Footer/>

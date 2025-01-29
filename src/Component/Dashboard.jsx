@@ -29,10 +29,11 @@ const slides = [
 
 export default function Dashboard() {
     return (
-        <div style={{width:'100%'}}>
-            <Row >
-                <Col md={12}>
-                    <Carousel>
+        <div >
+            <Row className="mx-0"> 
+            <Col l={12} className="p-0"> 
+
+                    <Carousel style={{ maxWidth: '100%' }}>
                         {slides.map((slide, index) => (
                             <Carousel.Item key={index} interval={2000}>
                                 <img
@@ -48,10 +49,12 @@ export default function Dashboard() {
                             </Carousel.Item>
                         ))}
                     </Carousel>
+
+
                     <FeatureSection />
 
-                    <Categories  />
-                    <Container>
+                    <Categories />
+                    <Container >
                         <h2 className="text-center my-4">What Our Customers Say</h2>
                         <Row className="justify-content-center">
                             {reviews.map((review, index) => (
