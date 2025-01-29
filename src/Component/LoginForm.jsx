@@ -22,49 +22,49 @@ const LoginForm = () => {
             setErrorMessage('invalid password.');
         }
     }
-    async function handleSubmit  (e)  {
-        e.preventDefault(); // Prevent default form submission
+    // async function handleSubmit  (e)  {
+    //     e.preventDefault(); // Prevent default form submission
 
-        try {
-            const response = await fetch('http://localhost:8086/api/customers/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
-            });
+    //     try {
+    //         const response = await fetch('http://localhost:8086/api/customers/', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ email,password }),
+    //         });
 
-            const data = await response.json();
+    //         const data = await response.json();
 
-            if (response.ok) {
+    //         if (response.ok) {
                 
-                console.log('Login successful:', data);
-                // localStorage.setItem('token', data.token);
-                navigate("/dashboard"); 
-            } else {
+    //             console.log('Login successful:', data);
+    //             // localStorage.setItem('token', data.token);
+    //             navigate("/dashboard"); 
+    //         } else {
                 
-                setError(data.message || 'Login failed');
-            }
-        } catch (err) {
+    //             setError(data.message || 'Login failed');
+    //         }
+    //     } catch (err) {
             
-            setError('Something went wrong. Please try again later.');
-            console.error('Error:', err);
-        }
-    };
-
-
-
-    // const handleSubmit = (e) => {
-
-    //     if (email === "admin@gmail.com" && password === "Pass@123") {
-    //         alert("Login successful!");
-
-    //         navigate("/dashboard");
-    //     } else {
-    //         alert("Invalid credentials");
+    //         setError('Something went wrong. Please try again later.');
+    //         console.error('Error:', err);
     //     }
-
     // };
+
+
+
+    const handleSubmit = (e) => {
+
+        if (email === "admin@gmail.com" && password === "Pass@123") {
+            alert("Login successful!");
+
+            navigate("/dashboard");
+        } else {
+            alert("Invalid credentials");
+        }
+
+    };
 
     return (
         <Container className="d-flex justify-content-center align-items-center vh-100">
