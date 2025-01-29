@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import ReviewCard from './ReviewCard';
 
 function NavBarComponent() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -28,20 +29,28 @@ function NavBarComponent() {
                 padding: "0 2rem"
             }}
         >
-            <Container>
+            <Container className='space-around'>
+                <Container>
                 <Navbar.Brand as={Link} to="/dashboard" className="fw-bold text-white d-flex align-items-center">
                     <span style={{ color: "#3D8BFD" }}>TRAVEL</span> VISTA
                 </Navbar.Brand>
-
-                <Nav className="mx-auto d-flex gap-4">
+                </Container>
+                
+                <Container className='space-around'>
+                    <Nav className="mx-auto d-flex gap-4">
                     <Nav.Link as={Link} to="/dashboard" className="text-white">Home</Nav.Link>
 
-                    <NavDropdown title="Packages" id="navbarScrollingDropdown">
+                    <NavDropdown title="Categories" id="navbarScrollingDropdown">
                         <NavDropdown.Item as={Link} to="/international">International</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/domestic">Domestic</NavDropdown.Item>
                     </NavDropdown>
 
                     <Nav.Link as={Link} to="/popularPackage" className="text-white">Package</Nav.Link>
+                    <Nav.Link as={Link} to ="Review" className="text-white">Reviews</Nav.Link>
+                    <Nav.Link as={Link} to="/popularPackage" className="text-white">Contact Us</Nav.Link>
+                    </Nav>
+                </Container>
+                
                     <Nav>
                         {loggedIn ? (
                             <Nav.Link as={Link} to="/profile" className="text-white">
@@ -53,7 +62,7 @@ function NavBarComponent() {
                             </Nav.Link>
                         )}
                     </Nav>
-                </Nav>
+                
             </Container>
         </Navbar>
     );
