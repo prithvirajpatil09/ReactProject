@@ -7,12 +7,11 @@ import Domestic from './Domestic';
 import NavBarComponet from './Component/NavBar';
 import PopularPackage from './Component/PopularPackage';
 import Footer from './Component/Footer';
-import ReviewCard from './Component/ReviewCard';
 import SubCategories from './Component/SubCategories';
+import TourCategories from './Component/TourCategories';
+import RegisterForm from './Component/RegisterForm';
 function App() {
   return (
-
-
     <>
       <NavBarComponet />
       <Routes>
@@ -23,6 +22,8 @@ function App() {
         <Route path="/popularPackage" element={<PopularPackage />} />
         <Route path="/LoginForm" element={<LoginForm />} />
         <Route path="/SubCategories" element={<SubCategories />} />
+        <Route path="/tourcatergories" element={<TourCategories />} />
+        <Route path="/register" element={<RegisterForm />} />
 
       </Routes>
       <Footer/>

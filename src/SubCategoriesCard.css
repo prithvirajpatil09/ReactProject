@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ body {
   box-sizing: inherit;
 }
 
-.europe-tour-container {
+.subcategories-tour-container {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -22,7 +22,7 @@ body {
   background-color: #f4f4f4;
 }
 
-/* Header Section */
+
 .header {
   position: relative;
   width: 100%;
@@ -53,7 +53,6 @@ body {
   margin: 0;
 }
 
-/* Tour Details Section */
 .tour-details {
   display: flex;
   flex-wrap: wrap;
@@ -65,11 +64,10 @@ body {
 
 .package-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; 
   align-items: center;
-  justify-content: flex-start;
-  width: 280px;
-  height: 500px; /* Ensure consistent height for all cards */
+  width: 600px; 
+  height: 240px; 
   border: 1px solid #dddddd;
   border-radius: 12px;
   overflow: hidden;
@@ -79,15 +77,20 @@ body {
 }
 
 .package-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
+
 .package-image {
-  width: 100%;
-  height: 180px;
+  width: 40%; 
+  height: 98%; 
+  padding-left: 0.2rem;
+  object-fit: cover;
+  border-top-left-radius: 0.8rem;  
+  border-bottom-left-radius: 0.8rem; 
+  border-top-right-radius: 0;
   overflow: hidden;
-  border-bottom: 1px solid #dddddd;
 }
 
 .package-image img {
@@ -96,14 +99,16 @@ body {
   object-fit: cover;
 }
 
+
 .package-description {
+  width: 60%; 
   padding: 16px;
-  text-align: center;
-  flex-grow: 1; /* Ensures consistent spacing */
+  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
+
 
 .package-description h3 {
   font-size: 1.4rem;
@@ -111,27 +116,27 @@ body {
   margin-bottom: 10px;
 }
 
+
 .package-description p {
   font-size: 1rem;
   color: #666666;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .package-details {
   font-size: 1rem;
   color: #444444;
-  text-align: left;
-  margin-top: 10px;
 }
 
+
 .itinerary-button {
-  margin-top: auto; /* Push button to the bottom */
-  padding: 16px 0;
+  margin-top: auto; 
+  padding-top: 10px;
 }
 
 .view-itinerary-btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 16px;
   font-size: 1rem;
   color: #ffffff;
   background-color: #007bff;
@@ -148,33 +153,21 @@ body {
   transform: translateY(-2px);
 }
 
-.view-itinerary-btn:focus {
-  outline: 2px solid #0056b3;
-  outline-offset: 2px;
-}
 
-/* Responsive Styles */
 @media (max-width: 768px) {
-  .header {
-    height: 40vh;
-  }
-
-  .tour-name {
-    font-size: 2rem;
-  }
-
   .package-card {
+    flex-direction: column; 
     width: 90%;
-  }
-}
-
-@media (max-width: 576px) {
-  .tour-name {
-    font-size: 1.6rem;
-    left: 20px;
+    height: auto;
   }
 
-  .tour-details {
-    gap: 16px;
+  .package-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .package-description {
+    width: 100%;
+    text-align: center;
   }
 }

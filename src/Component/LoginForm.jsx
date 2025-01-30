@@ -10,6 +10,7 @@ const LoginForm = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,16}$/;
 
@@ -22,49 +23,57 @@ const LoginForm = () => {
             setErrorMessage('invalid password.');
         }
     }
-    // async function handleSubmit  (e)  {
-    //     e.preventDefault(); // Prevent default form submission
-
-    //     try {
-    //         const response = await fetch('http://localhost:8086/api/customers/', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ email,password }),
-    //         });
-
-    //         const data = await response.json();
-
-    //         if (response.ok) {
-                
-    //             console.log('Login successful:', data);
-    //             // localStorage.setItem('token', data.token);
-    //             navigate("/dashboard"); 
-    //         } else {
-                
-    //             setError(data.message || 'Login failed');
-    //         }
-    //     } catch (err) {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        fetch('http://localhost:8086/api/customers/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        })
+        
+        .then((response) => {
             
-    //         setError('Something went wrong. Please try again later.');
-    //         console.error('Error:', err);
+            if (response.ok) {
+                return response.text(); // Returns the success message
+            } else if (response.status === 401) {
+                console.log(response.text)
+                return response.text().then((error) => {
+                    throw new Error(error || 'Invalid credentials');
+                });
+            } else {
+                throw new Error('Something went wrong. Please try again later.');
+            }
+        })
+        .then((data) => {
+            alert('Login successful!');
+            navigate('/dashboard');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            setErrorMessage(error.message || 'Something went wrong. Please try again later.');
+        });
+    };
+
+    // const handleSubmit = (e) => {
+
+    //     if (email === "admin@gmail.com" && password === "Pass@123") {
+    //         alert("Login successful!");
+
+    //         navigate("/dashboard");
+    //     } else {
+    //         alert("Invalid credentials");
     //     }
+
     // };
 
 
+    const handelnavigate= ()=>{
+        navigate('/register')
 
-    const handleSubmit = (e) => {
-
-        if (email === "admin@gmail.com" && password === "Pass@123") {
-            alert("Login successful!");
-
-            navigate("/dashboard");
-        } else {
-            alert("Invalid credentials");
-        }
-
-    };
+    }
 
     return (
         <Container className="d-flex justify-content-center align-items-center vh-100">
@@ -97,12 +106,11 @@ const LoginForm = () => {
                                 {errorMessage && <span className="text-danger">{errorMessage}</span>}
                             </Form.Group>
 
-                            <Button variant="primary" type="submit" className="w-100" >
+                            <Button variant="primary" type="submit" className="w-100" on >
                                 Login
                             </Button>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                                <span className="text-muted mx-2 w-1 " style={{ fontSize: '0.8rem' }}>Forget password?</span>
-                                <span className="text-muted" style={{ fontSize: '0.8rem' }}>Register</span>
+                            <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
+                                <span className="text-muted" style={{ fontSize: '0.8rem' }} onClick={handelnavigate}>Register</span>
                             </div>
                         </Form>
 

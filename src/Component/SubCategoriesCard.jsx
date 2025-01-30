@@ -1,23 +1,28 @@
 import React from 'react';
 import "../SubCategoriesCard.css";
 import { Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-// Reusable TourPackageCard Component
-export default function SubCategoriesCard({ image, title, description, price, availability }) {
+
+export default function SubCategoriesCard({ image, title, description, price,  }) {
+    const navigation = useNavigate();
+
+    const handlenavigation = () => {
+        navigation('/tourcatergories')
+    }
     return (
-        <Card style={{ width: '18rem', margin: '1rem' }}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{description}</Card.Text>
+        <Card className="package-card">
+            <Card.Img variant="top" src={image} className="package-image" />
+            <Card.Body className="package-description">
+                <Card.Title className="package-title">{title}</Card.Title>
+                <Card.Text className="package-text">{description}</Card.Text>
+                <Card.Text className="package-price">{price}</Card.Text>
                 
-                <Card.Text>{price }</Card.Text>
-                <Card.Text>{availability}</Card.Text>
-                
-                <Button variant="primary"  >
+                <Button variant="primary" className="explore-btn" onClick={handlenavigation}>
                     Explore
                 </Button>
             </Card.Body>
         </Card>
+
     );
 };
