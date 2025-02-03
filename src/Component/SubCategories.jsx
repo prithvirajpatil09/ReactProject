@@ -49,7 +49,7 @@ export default function SubCategories() {
     
     const location = useLocation();
     let category = location.state?.title
-    category = category.split(" ")[0];
+    category = category.id;
     let abc = category.toLowerCase();
     const selectedPackages = tourPackages[abc] || [];
     return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import CategoriesCard from "./CatergoriesCard";
 // import CategoriesCard from "./CategoriesCard";
@@ -28,6 +28,20 @@ const cardData = [
 ];
 
 export default function Categories() {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:8086/api") 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => setCategories(data))
+            .catch(error => console.error("Error fetching categories:", error));
+    }, []);
+    console.log(categories)
     return (
         <>
             <div
@@ -56,18 +70,33 @@ export default function Categories() {
                 </h1>
 
                 <Row className="g-4">
-                    {cardData.map((data, index) => (
+                {categories.length === 0 ? (
+                    <h3 style={{ color: "white", textAlign: "center" }}>Loading Categories...</h3>
+                ) : (
+                    categories.map((category, index) => (
                         <Col key={index} md={4} className="mb-4">
                             <CategoriesCard
-                                title={data.title}
-                                text={data.text}
-                                imageUrl={data.imageUrl}
-                                buttonLabel={data.buttonLabel}
+                                title={category.category_Name} // ✅ Ensure this matches API response
+                                gir imageUrl={`http://localhost:8086/${category.category_image_path}`} // ✅ Ensure this path is valid
+                                buttonLabel="Explore"
+                                id={category.cat_master_id} // ✅ Ensure `id` matches the API data
                             />
                         </Col>
-                    ))}
-                </Row>
+                    ))
+                )}
+            </Row>
             </div>
         </>
     );
 }
+
+// {cardData.map((data, index) => (
+//     <Col key={index} md={4} className="mb-4">
+//         <CategoriesCard
+//             title={data.title}
+//             text={data.text}
+//             imageUrl={data.imageUrl}
+//             buttonLabel={data.buttonLabel}
+//         />
+//     </Col>
+// ))}
