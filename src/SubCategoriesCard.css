@@ -53,7 +53,7 @@ body {
   margin: 0;
 }
 
-.tour-details {
+.subcategories-details {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;

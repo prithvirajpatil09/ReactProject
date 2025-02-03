@@ -12,6 +12,8 @@ function NavBarComponent() {
 
         setLoggedIn(true);
     };
+
+    
     return (
         <Navbar
             expand="lg"

@@ -4,11 +4,11 @@ import { Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function SubCategoriesCard({ image, title, description, price,  }) {
+export default function SubCategoriesCard({ image, title, description  }) {
     const navigation = useNavigate();
 
     const handlenavigation = () => {
-        navigation('/tourcatergories')
+        navigation('/tourcatergories', { state: { title ,image } })
     }
     return (
         <Card className="package-card">
@@ -16,7 +16,7 @@ export default function SubCategoriesCard({ image, title, description, price,  }
             <Card.Body className="package-description">
                 <Card.Title className="package-title">{title}</Card.Title>
                 <Card.Text className="package-text">{description}</Card.Text>
-                <Card.Text className="package-price">{price}</Card.Text>
+                
                 
                 <Button variant="primary" className="explore-btn" onClick={handlenavigation}>
                     Explore
